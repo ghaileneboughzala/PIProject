@@ -17,10 +17,12 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import utils.BCryptPass;
 import utils.Myconnexion;
 
 /**
@@ -60,7 +62,7 @@ public class ServiceUser implements IService<User>{
                     + ", `prenom`, `photo`, "
                     + "`is_verified`, `code`) "
                     + "VALUES ('"+lc.get(lc.size()-1).getId()+"','"+t.getEmail()+"','"+t.getRoles()+"',"
-                    + "'"+t.getPassword()+"','"+t.getCin()+"','"+t.getNom()+"',"
+                    + "'"+BCryptPass.HashPass(t.getPassword())+"','"+t.getCin()+"','"+t.getNom()+"',"
                     + "'"+t.getPrenom()+"','"+t.getPhoto()+"','"+x+"',"
                     + "'"+t.getCode()+"')";
             st=cnx.createStatement();
@@ -73,6 +75,7 @@ public class ServiceUser implements IService<User>{
 
     @Override
     public void supprimer(int id) {
+        User u=getUserById(id);
         try {
             String query="DELETE FROM `user` WHERE id="+id;
             Statement st;
@@ -81,6 +84,7 @@ public class ServiceUser implements IService<User>{
         } catch (SQLException ex) {
             Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
         }
+        sc.supprimer(u.getCarte_id());
     }
 
     @Override
@@ -97,7 +101,7 @@ public class ServiceUser implements IService<User>{
             String query="UPDATE `user` SET `carte_id`='"+t.getCarte_id()+"',"
                     + "`email`='"+t.getEmail()+"',"
                     + "`roles`='"+t.getRoles()+"',"
-                    + "`password`='"+t.getPassword()+"',"
+                    + "`password`='"+BCryptPass.HashPass(t.getPassword())+"',"
                     + "`cin`='"+t.getCin()+"',"
                     + "`nom`='"+t.getNom()+"',"
                     + "`prenom`='"+t.getPrenom()+"',"
@@ -141,5 +145,45 @@ public class ServiceUser implements IService<User>{
         }
         return lu;
     }
-    
+    public User login(String email,String password)
+    {
+        User u=new User();
+        try {
+            String query="SELECT * FROM `user` WHERE `email`='"+email+"' AND `password`='"+password+"'";
+            Statement stm=cnx.createStatement();
+            ResultSet rs=stm.executeQuery(query);
+            if(rs.next()){
+                
+                u.setId(rs.getInt("id"));
+                u.setCarte_id(rs.getInt("carte_id"));
+                u.setEmail(rs.getString("email"));
+                u.setRoles(Role.valueOf(rs.getString("roles")));
+                u.setPassword(rs.getString("password"));
+                u.setCin(rs.getString("cin"));
+                u.setNom(rs.getString("nom"));
+                u.setPrenom(rs.getString("prenom"));
+                u.setPhoto(rs.getString("photo"));
+                u.setIs_verified(rs.getBoolean("is_verified"));
+                u.setCode(rs.getString("code"));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return u;
+    }
+    public User getUserById(int id){
+        List<User> users=afficher();
+        return users.stream().filter(u->u.getId()==id).findFirst().orElse(null);
+        
+    }
+     public User getUserByEmail(String email){
+        List<User> users=afficher();
+        return users.stream().filter(u->u.getEmail().equals(email)).findFirst().orElse(null);
+        
+    }
+    public User getUserByCard(int id){
+        List<User> users=afficher();
+        return users.stream().filter(u->u.getCarte_id()==id).findFirst().orElse(null);
+    }
 }

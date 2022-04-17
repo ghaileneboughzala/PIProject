@@ -5,16 +5,12 @@
  */
 package services;
 
-
-import java.util.List;
+import entites.User;
 
 /**
  *
  * @author ghail
  */
-public interface IService<T> {
-    public void ajouter(T t)  ;
-    public void supprimer(int id);
-    public void modifier(T u,int id_amodifier);
-    public List<T> afficher();
+public interface MyListener {
+    public void onclickListener(User u);
 }

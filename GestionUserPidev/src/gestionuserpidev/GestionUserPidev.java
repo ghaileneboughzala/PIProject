@@ -13,8 +13,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Random;
+import org.mindrot.jbcrypt.BCrypt;
 import services.ServiceCarteFidelite;
 import services.ServiceUser;
+import utils.BCryptPass;
 import utils.Myconnexion;
 
 /**
@@ -33,12 +35,14 @@ public class GestionUserPidev {
         CarteFidelite c=new CarteFidelite("10", 20, "5 mois", d);
         ServiceUser su=new ServiceUser();
         ServiceCarteFidelite sc=new ServiceCarteFidelite();
+        System.out.println(sc.sortByPoints());
         //sc.ajouter(c);
         //sc.supprimer(112);
         //sc.modifier(c, 111);
         //System.out.println(sc.afficher());
-        su.ajouter(u);
+        //su.ajouter(u);
         //System.out.println(su.afficher());
+        
         
         
         

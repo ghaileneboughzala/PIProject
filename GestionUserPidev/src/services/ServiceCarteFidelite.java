@@ -11,8 +11,10 @@ import entites.User;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -93,5 +95,18 @@ public class ServiceCarteFidelite implements IService<CarteFidelite>{
         }
         return lc;
     }
+    public CarteFidelite getCarteFideliteById(int id){
+        List<CarteFidelite> carteFidelites=afficher();
+        return carteFidelites.stream().filter(u->u.getId()==id).findFirst().orElse(null);
+        
+    }
+    public List<CarteFidelite> sortByPoints(){
+        List<CarteFidelite> carteFidelites=afficher();
+        
+        carteFidelites.sort(Comparator.comparing(CarteFidelite::getNbpts));
+        
+        return carteFidelites;
+    }
+   
     
 }
