@@ -15,12 +15,15 @@ import java.sql.PreparedStatement;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -31,6 +34,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import services.PersonnelService;
 import util.MyDB;
 
@@ -190,6 +194,33 @@ Alert alert = new Alert(AlertType.INFORMATION);
 
     @FXML
     private void afficherpers(ActionEvent event) {
+        
+     try {
+            Stage nouveauStage;
+            Parent root = FXMLLoader.load(getClass().getResource("afficherpersonnel.fxml"));
+            nouveauStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            nouveauStage.setScene(scene);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }  
+        
+        
+    }
+
+    @FXML
+    private void afficherfonction(ActionEvent event) {
+         try {
+            Stage nouveauStage;
+            Parent root = FXMLLoader.load(getClass().getResource("Fonction.fxml"));
+            nouveauStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            nouveauStage.setScene(scene);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }  
     }
     
     }

@@ -25,10 +25,10 @@ public class NewFXMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try{ Parent  root;
-        root= FXMLLoader.load(getClass().getResource("../gui/afficherpersonnel.fxml"));
+        root= FXMLLoader.load(getClass().getResource("../gui/CultureFXML.fxml"));
         Scene scene = new Scene(root);
         
-        primaryStage.setTitle("Interface back personnem");
+        primaryStage.setTitle("Interface back personnel");
         primaryStage.setScene(scene);
 Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Ma Connexion");

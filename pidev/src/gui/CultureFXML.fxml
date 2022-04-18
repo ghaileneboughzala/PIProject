@@ -49,5 +49,7 @@
       <DatePicker fx:id="tfDateAjoutC" layoutX="107.0" layoutY="287.0" prefHeight="31.0" prefWidth="156.0" />
       <TextField fx:id="tfFlagC" layoutX="100.0" layoutY="222.0" prefHeight="31.0" prefWidth="122.0" />
       <Button fx:id="brImageC" layoutX="233.0" layoutY="206.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" text="browse" />
+      <Button layoutX="18.0" layoutY="355.0" mnemonicParsing="false" onAction="#offreb" text="offre" />
+      <Button layoutX="95.0" layoutY="355.0" mnemonicParsing="false" onAction="#frontc" text="front" />
    </children>
 </AnchorPane>

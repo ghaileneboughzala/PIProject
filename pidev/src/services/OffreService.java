@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import util.MyDB;
 
 /**
@@ -100,8 +102,30 @@ public class OffreService {
     }
     
     
-    public List<Offre> recuperer(){
-        List<Offre> list = new ArrayList<>();
+    public ObservableList<Offre> recuperer(){
+        ObservableList<Offre> list = FXCollections.observableArrayList();;
+        try {
+            String req = "select * from offre";
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(req);
+                    
+            while(rs.next()){
+                Offre o = new Offre();
+                o.setId(rs.getInt("id"));
+                o.setTitre(rs.getString("titre"));
+                o.setDescription(rs.getString("description"));
+                o.setRemise(rs.getFloat("remise"));
+                o.setImage(rs.getString("image"));
+                
+                list.add(o);
+            }
+        } catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return list;
+    }
+    public List<Offre> recupererList(){
+        List<Offre> list = new ArrayList();
         try {
             String req = "select * from offre";
             Statement st = connection.createStatement();

@@ -8,6 +8,7 @@ package gui;
 import entities.Culture;
 import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.Arrays;
@@ -17,7 +18,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -26,6 +31,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import services.CultureService;
 
 /**
@@ -81,7 +87,7 @@ CultureService cs= new CultureService();
             @Override
             public void handle(ActionEvent event) {
                 tfFlagC.clear();
-                fileChooser.setTitle("Select Photo Personnel");
+                fileChooser.setTitle("Select Photo Culture");
                 fileChooser.setInitialDirectory(new File(System.getProperty("user.home"), "Documents\\NetBeansProjects\\pidev\\src\\uploads"));
                 File file = fileChooser.showOpenDialog(null);
 
@@ -114,7 +120,7 @@ CultureService cs= new CultureService();
             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
             alert1.setTitle("Suppression avec succes?");
             alert1.setHeaderText(null);
-            alert1.setContentText("Personnel supprimé avec succes!");
+            alert1.setContentText("Culture supprimée avec succes!");
             alert1.showAndWait();
              UpdateL();}
              
@@ -132,6 +138,14 @@ CultureService cs= new CultureService();
             alert.setTitle("obligatoire");
             alert.setHeaderText(null);
             alert.setContentText("Il est obligatoire de remplir tous les champs !");
+            alert.showAndWait();
+             
+         }
+         else if((tfRefC.getText().length()>5)){
+             Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("reference");
+            alert.setHeaderText(null);
+            alert.setContentText("La référence doit contenir 5 caractères max!");
             alert.showAndWait();
              
          }
@@ -166,7 +180,25 @@ CultureService cs= new CultureService();
     }
 
     @FXML
-    private void updateCulture(ActionEvent event) {try{
+    private void updateCulture(ActionEvent event) {
+         if((tfRefC.getText().equals("")) || (tfPaysC.getText().equals(""))||(tfTexteC.getText().equals(""))||(tfFlagC.getText().equals(""))||(tfDateAjoutC.toString().equals(""))){
+              Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("obligatoire");
+            alert.setHeaderText(null);
+            alert.setContentText("Il est obligatoire de remplir tous les champs !");
+            alert.showAndWait();
+             
+         }
+         else if((tfRefC.getText().length()>5)){
+             Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("reference");
+            alert.setHeaderText(null);
+            alert.setContentText("La référence doit contenir 5 caractères max!");
+            alert.showAndWait();
+             
+         }
+         else {
+        try{
             Culture c  = new Culture() ;
             Culture selecteditem = (Culture) listCultures.getSelectionModel().getSelectedItem();
             String ref = selecteditem.getRef();
@@ -188,7 +220,7 @@ CultureService cs= new CultureService();
             ex.printStackTrace();
 
         }
-    }
+    }}
 
     @FXML
     private void deleteCulture(ActionEvent event) {
@@ -200,7 +232,7 @@ CultureService cs= new CultureService();
             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
             alert1.setTitle("Suppression avec succes?");
             alert1.setHeaderText(null);
-            alert1.setContentText("Personnel supprimé avec succes!");
+            alert1.setContentText("Culture supprimé avec succes!");
             alert1.showAndWait();
              UpdateL();}
              
@@ -208,5 +240,33 @@ CultureService cs= new CultureService();
 
             ex.printStackTrace();
     }
+    }
+
+    @FXML
+    private void offreb(ActionEvent event) {
+        try {
+            Stage nouveauStage;
+            Parent root = FXMLLoader.load(getClass().getResource("OffreFXML.fxml"));
+            nouveauStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            nouveauStage.setScene(scene);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }  
+    }
+
+    @FXML
+    private void frontc(ActionEvent event) {
+        try {
+            Stage nouveauStage;
+            Parent root = FXMLLoader.load(getClass().getResource("CultureFrontFXML.fxml"));
+            nouveauStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            nouveauStage.setScene(scene);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }  
     }
 }

@@ -13,37 +13,37 @@
       <Pane layoutX="14.0" layoutY="21.0" prefHeight="338.0" prefWidth="896.0" style="-fx-background-color: #fff;">
          <children>
             <Separator layoutX="240.0" layoutY="86.0" prefHeight="11.0" prefWidth="564.0" />
-            <Label fx:id="role" layoutX="366.0" layoutY="15.0" text="Personnel" textFill="#3a1c9d">
+            <Label fx:id="culture" layoutX="226.0" text="CULTURE" textFill="#3a1c9d">
                <font>
                   <Font name="Copperplate Gothic Bold" size="32.0" />
                </font>
             </Label>
-            <Label fx:id="labelNom" layoutX="243.0" layoutY="97.0" text="Nom" textFill="#6f4c0a">
+            <Label fx:id="labelPaysC" layoutX="243.0" layoutY="104.0" text="Pays" textFill="#6f4c0a">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="419.0" layoutY="176.0" text="FONCTION" textFill="#916a1c">
+            <Label fx:id="labelDateC" layoutX="563.0" layoutY="236.0" text="ajouté le" textFill="#916a1c">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="labelPrenom" layoutX="524.0" layoutY="97.0" text="Prenom" textFill="#68480c">
+            <Label fx:id="labelTexteC" layoutX="239.0" layoutY="155.0" text="Texte" textFill="#68480c">
                <font>
                   <Font name="Comic Sans MS Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="nom" layoutX="234.0" layoutY="115.0" text="Brad Pitt" textFill="#030303">
+            <Label fx:id="itemPaysC" layoutX="306.0" layoutY="100.0" text="nompays" textFill="#030303">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
-            <Label fx:id="prenom" layoutX="529.0" layoutY="116.0" text="haja">
+            <Label fx:id="itemTexteC" layoutX="241.0" layoutY="186.0" text="texteeee">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="fonction" layoutX="414.0" layoutY="197.0" text="fonction_id">
+            <Label fx:id="itemDateC" layoutX="642.0" layoutY="224.0" text="date">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
@@ -60,12 +60,17 @@
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="id" layoutX="244.0" layoutY="50.0" text="Ref: " textFill="#221e75">
+            <Label fx:id="labelRefC" layoutX="244.0" layoutY="50.0" text="Reference : " textFill="#221e75">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <ImageView fx:id="img" fitHeight="256.0" fitWidth="212.0" layoutX="8.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="itemFlagC" fitHeight="256.0" fitWidth="212.0" layoutX="8.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="itemRefC" layoutX="334.0" layoutY="47.0" text="referencee" textFill="#030303">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
          </children>
          <effect>
             <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />

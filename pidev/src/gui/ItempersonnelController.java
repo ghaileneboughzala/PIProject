@@ -38,9 +38,6 @@ public class ItempersonnelController implements Initializable {
     private Label nom;
     @FXML
     private Label prenom;
-    @FXML
-    private Label mail;
-    @FXML
     private Label phone;
     @FXML
     private Label section;
@@ -53,6 +50,8 @@ public class ItempersonnelController implements Initializable {
 PersonnelService ps= new PersonnelService();
 Personnel p ;
  ObservableList<Personnel> personnels;
+    @FXML
+    private Label fonction;
     /**
      * Initializes the controller class.
      */
@@ -65,7 +64,15 @@ Personnel p ;
         nom.setText(p.getNom());
         prenom.setText(p.getPrenom());
         if (p.getFonction_id()== 1)
-        phone.setText(String.valueOf(p.getFonction_id()));
+        fonction.setText("chef");
+        else if (p.getFonction_id()== 4)
+             fonction.setText("gérant");
+         else if (p.getFonction_id()== 7)
+             fonction.setText("caissier");
+        else if (p.getFonction_id()== 12)
+             fonction.setText("patissier");
+         else if (p.getFonction_id()== 17)
+             fonction.setText("ouvrier");
         
       file = new File("src/uploads/" + p.getPhoto());
       img.setImage(new Image(file.toURI().toString()));
