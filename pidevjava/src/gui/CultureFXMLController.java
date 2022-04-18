@@ -112,9 +112,9 @@ public class CultureFXMLController implements Initializable {
         cs.supprimer(selecteditem.getRef());
         listCultures.getItems().addAll(cs.recuperer());
             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-            alert1.setTitle("Suppression avec succes?");
+            alert1.setTitle("Suppression");
             alert1.setHeaderText(null);
-            alert1.setContentText("Personnel supprimé avec succes!");
+            alert1.setContentText("Culture supprimée avec succes!");
             alert1.showAndWait();
              UpdateL();}
              
@@ -198,9 +198,9 @@ public class CultureFXMLController implements Initializable {
             cs.supprimer(selecteditem.getRef());
             listCultures.getItems().addAll(cs.recuperer());
             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-            alert1.setTitle("Suppression avec succes?");
+            alert1.setTitle("Suppression");
             alert1.setHeaderText(null);
-            alert1.setContentText("Personnel supprimé avec succes!");
+            alert1.setContentText("Culture supprimée avec succes!");
             alert1.showAndWait();
              UpdateL();}
              

@@ -128,6 +128,28 @@ public class CultureService {
         return list;
     }
 
+    public List<Culture> recupererList(){
+        List<Culture> list = new ArrayList();
+        try {
+            String req = "select * from culture";
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(req);
+                    
+            while(rs.next()){
+                Culture c = new Culture();
+                c.setRef(rs.getString("ref"));
+                c.setPays(rs.getString("pays"));
+                c.setTexte(rs.getString("texte"));
+                c.setFlag(rs.getString("flag"));
+                c.setDate_ajout(rs.getDate("date_ajout"));
+                
+                list.add(c);
+            }
+        } catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return list;
+    }
 //    @Override
 //    public List<Personne> recuperer() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

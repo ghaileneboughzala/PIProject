@@ -125,6 +125,29 @@ public class OffreService {
         }
         return list;
     }
+    
+    public List<Offre> recupererList(){
+        List<Offre> list = new ArrayList();
+        try {
+            String req = "select * from offre";
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(req);
+                    
+            while(rs.next()){
+                Offre o = new Offre();
+                o.setId(rs.getInt("id"));
+                o.setTitre(rs.getString("titre"));
+                o.setDescription(rs.getString("description"));
+                o.setRemise(rs.getFloat("remise"));
+                o.setImage(rs.getString("image"));
+                
+                list.add(o);
+            }
+        } catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return list;
+    }
 
     
 }
