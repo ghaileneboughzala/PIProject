@@ -76,7 +76,7 @@ public class Personnel {
 
     @Override
     public String toString() {
-        return "Personnel{" + "id=" + id + ", fonction_id=" + fonction_id + ", nom=" + nom + ", prenom=" + prenom + ", photo=" + photo + '}';
+        return "Personnel : " + " fonction_id=" + fonction_id + "| nom=" + nom + "| prenom=" + prenom + "| photo=" + photo + '}';
     }
     
  

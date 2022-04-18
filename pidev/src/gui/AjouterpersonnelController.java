@@ -62,7 +62,7 @@ PersonnelService ps= new PersonnelService();
     @FXML
     private Button btnsupprimer;
     @FXML
-    private Button btnC;
+    private Button afficherpers;
   public void UpdateList() {
         personnels = (ObservableList<Personnel>) ps.recuperer();
         lid.getItems().setAll(personnels);
@@ -101,7 +101,7 @@ PersonnelService ps= new PersonnelService();
             alert.setContentText("Il est obligatoire de remplir tous les champs !!!");
             alert.showAndWait();
              
-         }
+         } 
                     else {
              try {
            Personnel p = new Personnel();
@@ -186,15 +186,10 @@ Alert alert = new Alert(AlertType.INFORMATION);
         }
     }
 
+
+
     @FXML
-    private void CultureBT(ActionEvent event) {
-        
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("CultureFXML.fxml"));
-            Scene scene = new Scene(root);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+    private void afficherpers(ActionEvent event) {
     }
     
     }

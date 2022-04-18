@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="mainAnchor" prefHeight="399.0" prefWidth="949.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <Pane layoutX="14.0" layoutY="21.0" prefHeight="338.0" prefWidth="896.0" style="-fx-background-color: #fff;">
+         <children>
+            <Separator layoutX="240.0" layoutY="86.0" prefHeight="11.0" prefWidth="564.0" />
+            <Label fx:id="role" layoutX="177.0" text="chef" textFill="#3a1c9d">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelNom" layoutX="243.0" layoutY="97.0" text="Nom" textFill="#6f4c0a">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="419.0" layoutY="176.0" text="FONCTION" textFill="#916a1c">
+               <font>
+                  <Font name="Comic Sans MS Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelPrenom" layoutX="524.0" layoutY="97.0" text="Prenom" textFill="#68480c">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="nom" layoutX="234.0" layoutY="115.0" text="Brad Pitt" textFill="#030303">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="prenom" layoutX="529.0" layoutY="116.0" text="haja">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="phone" layoutX="414.0" layoutY="197.0" text="phone">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Pane layoutY="269.0" prefHeight="70.0" prefWidth="896.0" style="-fx-background-color: #F0F0F0;" />
+            <Label fx:id="section" layoutX="614.0" layoutY="34.0" textFill="#aeacac">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Separator layoutX="708.0" layoutY="19.0" orientation="VERTICAL" prefHeight="64.0" prefWidth="0.0" />
+            <Label fx:id="score" layoutX="725.0" layoutY="33.0" textFill="#aeacac">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="id" layoutX="244.0" layoutY="50.0" text="Ref: " textFill="#221e75">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="img" fitHeight="256.0" fitWidth="212.0" layoutX="8.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+         <effect>
+            <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>
