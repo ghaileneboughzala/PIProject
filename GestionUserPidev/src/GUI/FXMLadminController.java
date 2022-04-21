@@ -101,19 +101,19 @@ public class FXMLadminController implements Initializable {
         Pattern pattern = Pattern.compile(emailRegex);
         String erreur="";
         if(tfcin.getText().trim().isEmpty()){
-            erreur+="-Remplire le champ CIN\n";
+            erreur+="-Remplir le champ CIN\n";
         }
         if(tfemail.getText().trim().isEmpty()){
-            erreur+="-Remplire le champ Email\n";
+            erreur+="-Remplir le champ Email\n";
         }
         if(tfimgurl.getText().trim().isEmpty()){
             erreur+="-Inserer une image\n";
         }
         if(tfnom.getText().trim().isEmpty()){
-            erreur+="-Remplire le champ Nom\n";
+            erreur+="-Remplir le champ Nom\n";
         }
         if(tfprenom.getText().trim().isEmpty()){
-            erreur+="-Remplire le champ Prenom\n";
+            erreur+="-Remplir le champ Prenom\n";
         }
         if(pfpass.getText().trim().isEmpty()){
             erreur+="-Remplire le champ Mot De Passe\n";
