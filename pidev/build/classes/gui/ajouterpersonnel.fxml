@@ -7,29 +7,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #e1ce60;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterpersonnelController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="627.0" style="-fx-background-color: FFBE00;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterpersonnelController">
    <children>
-      <Button fx:id="btnajouter" layoutX="240.0" layoutY="336.0" mnemonicParsing="false" onAction="#AjouterPersonnel" text="Ajouter" />
-      <VBox layoutX="14.0" layoutY="28.0" prefHeight="200.0" prefWidth="100.0" spacing="60.0">
+      <Button fx:id="btnajouter" layoutX="25.0" layoutY="314.0" mnemonicParsing="false" onAction="#AjouterPersonnel" style="-fx-background-color: 6340EC;" text="Ajouter" />
+      <VBox layoutX="14.0" layoutY="28.0" prefHeight="278.0" prefWidth="225.0" spacing="60.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <Label text="nom" />
             <Label text="prenom" />
-            <Label text="image" />
-            <Button fx:id="btnTelecharger" minWidth="35.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="35.0" text=".." />
+            <Button fx:id="btnTelecharger" ellipsisString="" minWidth="35.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="81.0" style="-fx-background-color: #FFFFFF;" text="browse" />
             <Label text="fonction" />
          </children>
       </VBox>
-      <VBox layoutX="114.0" layoutY="39.0" prefHeight="200.0" prefWidth="100.0" spacing="75.0">
+      <VBox layoutX="114.0" layoutY="31.0" prefHeight="200.0" prefWidth="100.0" spacing="50.0">
          <children>
             <TextField fx:id="tfNom" />
             <TextField fx:id="tfPrenom" layoutX="10.0" layoutY="10.0" />
             <TextField fx:id="tfImage" layoutX="10.0" layoutY="36.0" />
             <TextField fx:id="tfFonction" layoutX="10.0" layoutY="62.0" />
          </children></VBox>
-      <ListView fx:id="lid" layoutX="240.0" layoutY="39.0" onMouseClicked="#getSelected" prefHeight="244.0" prefWidth="337.0" />
-      <Button fx:id="btnmodifier" layoutX="376.0" layoutY="291.0" mnemonicParsing="false" onAction="#ModifierPersonnel" text="modifier" />
-      <Button fx:id="btnsupprimer" layoutX="463.0" layoutY="291.0" mnemonicParsing="false" onAction="#SupprimerPersonnel" text="Supprimer" />
-      <Button fx:id="afficherpers" layoutX="487.0" layoutY="346.0" mnemonicParsing="false" onAction="#afficherpers" text="front" />
-      <Button layoutX="352.0" layoutY="346.0" mnemonicParsing="false" onAction="#afficherfonction" text="afficher fonction" />
+      <ListView fx:id="lid" layoutX="263.0" layoutY="36.0" onMouseClicked="#getSelected" prefHeight="244.0" prefWidth="337.0" />
+      <Button fx:id="btnmodifier" layoutX="352.0" layoutY="291.0" mnemonicParsing="false" onAction="#ModifierPersonnel" style="-fx-background-color: 6340EC;" text="modifier" />
+      <Button fx:id="btnsupprimer" layoutX="522.0" layoutY="290.0" mnemonicParsing="false" onAction="#SupprimerPersonnel" style="-fx-background-color: 6340EC;" text="Supprimer" />
+      <Button fx:id="afficherpers" layoutX="541.0" layoutY="346.0" mnemonicParsing="false" onAction="#afficherpers" style="-fx-background-color: 6340EC;" text="front" />
+      <Button layoutX="352.0" layoutY="346.0" mnemonicParsing="false" onAction="#afficherfonction" style="-fx-background-color: 6340EC;" text="afficher fonction" />
    </children>
 </AnchorPane>

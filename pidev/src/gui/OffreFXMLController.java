@@ -246,7 +246,7 @@ public class OffreFXMLController implements Initializable {
             nouveauStage.setScene(scene);
 
         } catch (IOException ex) {
-            ex.printStackTrace();
+            ex.printStackTrace(); 
         }  
     }
    

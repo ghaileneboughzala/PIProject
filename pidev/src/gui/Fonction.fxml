@@ -6,15 +6,28 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FonctionController">
+<AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="685.0" style="-fx-background-color: #e1ce60;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FonctionController">
    <children>
-      <Button fx:id="btnajouter" layoutX="14.0" layoutY="286.0" mnemonicParsing="false" onAction="#AjouterFonction" text="Ajouter" />
-      <VBox layoutX="29.0" layoutY="55.0" prefHeight="200.0" prefWidth="100.0" spacing="60.0">
+      <Button fx:id="btnajouter" layoutX="14.0" layoutY="286.0" mnemonicParsing="false" onAction="#AjouterFonction" text="Ajouter" textFill="#363db2">
+         <font>
+            <Font name="Bell MT Bold" size="15.0" />
+         </font></Button>
+      <VBox layoutX="6.0" layoutY="38.0" prefHeight="230.0" prefWidth="299.0" spacing="60.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Label text="nom" />
-            <Label text="salaire " />
-            <Label text="nombre d'heure" />
+            <Label text="nom" textFill="#363db2">
+               <font>
+                  <Font name="Bell MT Bold" size="15.0" />
+               </font></Label>
+            <Label text="salaire " textFill="#363db2">
+               <font>
+                  <Font name="Bell MT Bold" size="15.0" />
+               </font></Label>
+            <Label text="nombre d'heure" textFill="#363db2" textOverrun="CENTER_WORD_ELLIPSIS">
+               <font>
+                  <Font name="Bell MT Bold" size="15.0" />
+               </font></Label>
          </children>
       </VBox>
       <VBox layoutX="171.0" layoutY="46.0" prefHeight="200.0" prefWidth="100.0" spacing="50.0">
@@ -25,8 +38,17 @@
          </children>
       </VBox>
       <ListView fx:id="lid" layoutX="319.0" layoutY="38.0" onMouseClicked="#getSelected" prefHeight="244.0" prefWidth="337.0" />
-      <Button fx:id="btnmodifier" layoutX="386.0" layoutY="301.0" mnemonicParsing="false" onAction="#ModifierFonction" text="modifier" />
-      <Button fx:id="btnsupprimer" layoutX="473.0" layoutY="301.0" mnemonicParsing="false" onAction="#SupprimerFonction" text="Supprimer" />
-      <Button fx:id="afficherpers" layoutX="26.0" layoutY="430.0" mnemonicParsing="false" onAction="#afficherpers" text="pesonnel" />
+      <Button fx:id="btnmodifier" layoutX="386.0" layoutY="301.0" mnemonicParsing="false" onAction="#ModifierFonction" text="modifier" textFill="#363db2">
+         <font>
+            <Font name="Bell MT Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="btnsupprimer" layoutX="473.0" layoutY="301.0" mnemonicParsing="false" onAction="#SupprimerFonction" text="Supprimer" textFill="#363db2">
+         <font>
+            <Font name="Bell MT Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="afficherpers" layoutX="26.0" layoutY="430.0" mnemonicParsing="false" onAction="#afficherpers" text="pesonnel" textFill="#363db2">
+         <font>
+            <Font name="Bell MT Bold" size="15.0" />
+         </font></Button>
    </children>
 </AnchorPane>

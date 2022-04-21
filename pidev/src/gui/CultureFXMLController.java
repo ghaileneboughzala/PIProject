@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -107,7 +109,8 @@ CultureService cs= new CultureService();
         tfPaysC.setText(selecteditem.getPays());
         tfTexteC.setText(selecteditem.getTexte());
         tfFlagC.setText(String.valueOf(selecteditem.getFlag()));
-        //tfDateAjoutC.setDate(Date.valueOf(selecteditem.getDate_ajout()));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        tfDateAjoutC.setValue(LocalDate.parse(sdf.format(selecteditem.getDate_ajout())));
     }
 
 

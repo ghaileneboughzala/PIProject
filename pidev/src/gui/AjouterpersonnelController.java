@@ -135,7 +135,17 @@ PersonnelService ps= new PersonnelService();
 
 
     @FXML
-    private void ModifierPersonnel(ActionEvent event) {try {
+    private void ModifierPersonnel(ActionEvent event) {
+        if((tfNom.getText().equals("")) || (tfPrenom.getText().equals(""))||(tfImage.getText().equals(""))||(tfFonction.getText().equals(""))){
+              Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("champs");
+            alert.setHeaderText(null);
+            alert.setContentText("Il est obligatoire de remplir tous les champs !!!");
+            alert.showAndWait();
+             
+         } 
+                    else {
+        try {
 
                    
             Personnel p  = new Personnel() ;
@@ -157,7 +167,7 @@ Alert alert = new Alert(AlertType.INFORMATION);
 
         }
 
-    }
+    }}
 
     @FXML
     private void getSelected(MouseEvent event) {Personnel selecteditem = (Personnel) lid.getSelectionModel().getSelectedItem();

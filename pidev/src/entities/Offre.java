@@ -112,7 +112,7 @@ public class Offre {
 
     @Override
     public String toString() {
-        return "Offre{" + "id=" + id + ", titre=" + titre + ", description=" + description + ", remise=" + remise + ", image=" + image + ", exp_date=" + exp_date + ", expire=" + expire + '}';
+        return "Offre{  titre=" + titre + ", description=" + description + ", remise=" + remise + ", image=" + image + ", exp_date=" + exp_date + ", expire=" + expire + '}';
     }
     
     
