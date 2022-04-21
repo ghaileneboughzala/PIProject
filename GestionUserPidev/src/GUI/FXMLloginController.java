@@ -59,7 +59,7 @@ public class FXMLloginController implements Initializable {
             erreur+="-Remplire le champ Mot De Passe\n";
         }
         if (!pattern.matcher(tfemail.getText().trim()).matches()) {
-            erreur+="-Inserer correct email\n";
+            erreur+="-Inserer un correct email\n";
         } 
         return erreur;
         
