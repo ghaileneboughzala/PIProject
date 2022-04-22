@@ -86,10 +86,10 @@ public class FXMLuserController implements Initializable {
         lprenom.setText(u.getPrenom());
         lrole.setText(u.getRoles().toString());
         if(u.isIs_verified()){
-            letat.setText("Verifier");
+            letat.setText("Verifié");
         }
         else{
-            letat.setText("Non Verifier");
+            letat.setText("Non Verifié");
         }
         File file =new File(u.getPhoto());
         Image img = new Image(file.toURI().toString());

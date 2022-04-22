@@ -53,10 +53,10 @@ public class FXMLloginController implements Initializable {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +"[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         Pattern pattern = Pattern.compile(emailRegex);
         if(tfemail.getText().trim().isEmpty()){
-            erreur+="-Remplire le champ Email\n";
+            erreur+="-Veuillez remplir le champ Email\n";
         }
         if(pfpassword.getText().trim().isEmpty()){
-            erreur+="-Remplire le champ Mot De Passe\n";
+            erreur+="-Veuillez remplir le champ Mot De Passe\n";
         }
         if (!pattern.matcher(tfemail.getText().trim()).matches()) {
             erreur+="-Veuillez insérer un email valide\n";

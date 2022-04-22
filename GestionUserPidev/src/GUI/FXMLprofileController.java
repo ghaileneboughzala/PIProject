@@ -131,28 +131,28 @@ public class FXMLprofileController implements Initializable {
         Pattern pattern = Pattern.compile(emailRegex);
         String erreur="";
         if(tfcin.getText().trim().isEmpty()){
-            erreur+="-Remplire le champ CIN\n";
+            erreur+="-Veuillez remplir le champ CIN\n";
         }
         if(tfemail.getText().trim().isEmpty()){
-            erreur+="-Remplire le champ Email\n";
+            erreur+="-Veuillez remplir le champ Email\n";
         }
         if(tfimgurl.getText().trim().isEmpty()){
-            erreur+="-Inserer une image\n";
+            erreur+="-Veuillez insérer une image\n";
         }
         if(tfnom.getText().trim().isEmpty()){
-            erreur+="-Remplire le champ Nom\n";
+            erreur+="-Veuillez remplir le champ Nom\n";
         }
         if(tfprenom.getText().trim().isEmpty()){
-            erreur+="-Remplire le champ Prenom\n";
+            erreur+="-Veuillez remplir le champ Prenom\n";
         }
         if(pfpassword.getText().trim().isEmpty()){
-            erreur+="-Remplire le champ Mot De Passe\n";
+            erreur+="-Veuillez remplir le champ Mot De Passe\n";
         }
         if(!tfcin.getText().trim().matches("[0-9]+") &&tfcin.getText().trim().length()!=8 ){
-            erreur+="-Inserer correct numero de cin\n";
+            erreur+="-Veuillez insérer un numero de CIN valide\n";
         }
         if (!pattern.matcher(tfemail.getText().trim()).matches()) {
-            erreur+="-Inserer correct email\n";
+            erreur+="-Veuillez insérer un email valide\n";
         } 
         return erreur;
         
