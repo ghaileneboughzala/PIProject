@@ -122,7 +122,7 @@ public class FXMLadminController implements Initializable {
             erreur+="-Veuillez insérer un numero de CIN valide\n";
         }
         if (!pattern.matcher(tfemail.getText().trim()).matches()) {
-            erreur+="-Veuillez insérer un correct email\n";
+            erreur+="-Veuillez insérer un email valide\n";
         } 
         return erreur;
         
