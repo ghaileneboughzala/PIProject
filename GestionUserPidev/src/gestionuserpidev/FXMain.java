@@ -36,7 +36,6 @@ public class FXMain extends Application {
             Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
-    
 
     /**
      * @param args the command line arguments
