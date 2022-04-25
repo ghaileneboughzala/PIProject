@@ -3,37 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/afficherpersonnel.fxml</file>
+            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/StatsController.java</file>
             <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/AjouterpersonnelController.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/CultureFrontFXML.fxml</file>
+            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/DepensesController.java</file>
             <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/test/NewFXMain.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/services/FonctionService.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/ItemCultureController.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/test/Main.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/services/DepensesService.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/services/VoyageService.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/entities/Offre.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/CultureFrontFXMLController.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/Fonction.fxml</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/entities/Personnel.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/CultureFXMLController.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/util/MyDB.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/services/Iservice.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/OffreFrontFXMLController.java</file>
+            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/CalculatriceController.java</file>
+            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/CalculatriceFXML.fxml</file>
             <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/AfficherpersonnelController.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/services/CultureService.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/services/OffreService.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/OffreFXMLController.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/ItemOffreController.java</file>
             <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/services/PersonnelService.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/CultureFXML.fxml</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/itempersonnel.fxml</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/ItemOffre.fxml</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/OffreFrontFXML.fxml</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/ItemCulture.fxml</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/entities/Culture.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/ItempersonnelController.java</file>
-            <file>file:/C:/Users/mondh/Documents/NetBeansProjects/pidev/src/gui/FonctionController.java</file>
         </group>
     </open-files>
 </project-private>

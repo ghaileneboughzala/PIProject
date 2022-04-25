@@ -123,8 +123,8 @@ public class Voyage {
 
     @Override
     public String toString() {
-        return "Voyage{" + "id=" + id + ", offre_id=" + offre_id + ", id_u=" + id_u + 
-                ", date_dep=" + date_dep + ", heure_dep=" + heure_dep + ", destination=" + destination + ", done=" + done + '}';
+        return "Voyage{" +", offre_id=" + offre_id + ", id_u=" + id_u + 
+                ", date_dep=" + date_dep + ", destination=" + destination + ", done=" + done + '}';
     }
 
     

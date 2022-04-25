@@ -159,7 +159,6 @@ CultureService cs= new CultureService();
         c.setPays(tfPaysC.getText());
         c.setTexte(tfTexteC.getText());
         c.setFlag(tfFlagC.getText());
-        c.setPays(tfPaysC.getText());
         c.setDate_ajout(Date.valueOf(tfDateAjoutC.getValue()));
         cs.ajouter(c);
         listCultures.getItems().addAll(cs.recuperer());

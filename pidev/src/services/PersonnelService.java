@@ -135,4 +135,53 @@ String req1 = "delete from personnel where id = ? ";
         return list;
     }
     
+    
+     public List<Personnel> trinom() {
+        List<Personnel> list = new ArrayList();
+        try {
+            String req = "select * from personnel order by nom";
+            Statement st = connection.createStatement();
+            ResultSet rs =st.executeQuery(req);
+            
+            while(rs.next()){
+                Personnel p = new Personnel();
+                p.setId(rs.getInt("id"));
+                p.setFonction_id(rs.getInt("fonction_id"));
+                p.setNom(rs.getString("nom"));
+                p.setPrenom(rs.getString("prenom"));
+                p.setPhoto(rs.getString("photo"));  
+                list.add(p);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return list;
+    }
+     
+      public List<Personnel> triprenom() {
+        List<Personnel> list = new ArrayList();
+        try {
+            String req = "select * from personnel order by prenom";
+            Statement st = connection.createStatement();
+            ResultSet rs =st.executeQuery(req);
+            
+            while(rs.next()){
+                Personnel p = new Personnel();
+                p.setId(rs.getInt("id"));
+                p.setFonction_id(rs.getInt("fonction_id"));
+                p.setNom(rs.getString("nom"));
+                p.setPrenom(rs.getString("prenom"));
+                p.setPhoto(rs.getString("photo"));  
+                list.add(p);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return list;
+    }
+    
 }

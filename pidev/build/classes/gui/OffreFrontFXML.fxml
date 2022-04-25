@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
@@ -40,5 +41,6 @@
             <Font name="Bauhaus 93" size="24.0" />
          </font>
       </Label>
+      <Button fx:id="calcul" layoutX="971.0" layoutY="686.0" mnemonicParsing="false" onAction="#Calculer" text="Calculatrice" />
    </children>
 </AnchorPane>

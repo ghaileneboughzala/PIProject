@@ -7,12 +7,15 @@ package services;
 
 import entities.Voyage;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import util.MyDB;
 
 /**
@@ -27,16 +30,16 @@ public class VoyageService {
         System.out.println("cnx");
     }
     
-    public void ajouter(Voyage v) {
+    public void ajouter(Voyage v) throws SQLException{
         
         try {
                  
-            String req1 = "insert into voyage(offre_id,id_u,destination,done) values (?,?,?,?)";
+            String req1 = "insert into voyage(offre_id,id_u,destination,date_dep) values (?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(req1);
             ps.setInt(1,v.getOffre_id());
             ps.setInt(2,v.getId_u());
             ps.setString(3,v.getDestination());
-            ps.setBoolean(4,v.isDone());
+            ps.setDate(4,(Date)v.getDate_dep());
             ps.executeUpdate();     
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -46,13 +49,15 @@ public class VoyageService {
     
     public void modifier(Voyage v){
         try{
-            String sql="UPDATE voyage SET offre_id="+v.getOffre_id()
-                    +", id_u="+v.getId_u()
-                    +", destination='"+v.getDestination()
-                    +"', done="+v.isDone()
-                    +" WHERE id="+v.getId();
-            PreparedStatement ste = connection.prepareStatement(sql);
-            ste.executeUpdate(sql);
+            String req1 = "update voyage set offre_id = ? ,id_u = ? ,destination = ? ,date_dep = ? where  id = ? ";
+            PreparedStatement ps = connection.prepareStatement(req1);
+            ps.setInt(1,v.getOffre_id());
+            ps.setInt(2,v.getId_u());
+            ps.setString(3,v.getDestination());
+            ps.setDate(4,(Date)v.getDate_dep());
+            ps.setInt(5,v.getId());
+            ps.executeUpdate();
+            
             System.out.println("voyage modifié");
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -74,8 +79,8 @@ public class VoyageService {
     }
     
     
-    public List<Voyage> recuperer(){
-        List<Voyage> list = new ArrayList<>();
+    public ObservableList<Voyage> recuperer(){
+        ObservableList<Voyage> list = FXCollections.observableArrayList();
         try {
             String req = "select * from voyage";
             Statement st = connection.createStatement();
@@ -87,7 +92,8 @@ public class VoyageService {
                 v.setId(rs.getInt("id"));
                 v.setId_u(rs.getInt("id_u"));
                 v.setDestination(rs.getString("destination"));
-                v.setDone(rs.getBoolean("done"));
+                v.setDate_dep(rs.getDate("date_dep"));
+
                 
                 list.add(v);
             }

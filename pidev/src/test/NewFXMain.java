@@ -25,7 +25,7 @@ public class NewFXMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try{ Parent  root;
-        root= FXMLLoader.load(getClass().getResource("../gui/CultureFXML.fxml"));
+        root= FXMLLoader.load(getClass().getResource("../gui/depenses.fxml"));
         Scene scene = new Scene(root);
         
         primaryStage.setTitle("Interface back personnel");

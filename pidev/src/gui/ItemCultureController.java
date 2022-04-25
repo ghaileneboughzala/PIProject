@@ -73,7 +73,7 @@ public class ItemCultureController implements Initializable {
         itemRefC.setText(c.getRef());
         itemPaysC.setText(c.getPays());
         itemTexteC.setText(c.getTexte());
-        //itemDateC.setText(c.getDate_ajout().toString());
+        itemDateC.setText(c.getDate_ajout().toString());
         
       file = new File("src/uploads/" + c.getFlag());
       itemFlagC.setImage(new Image(file.toURI().toString()));

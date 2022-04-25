@@ -12,6 +12,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -35,6 +37,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.CultureService;
 import services.OffreService;
+import util.javaMail;
 
 /**
  * FXML Controller class
@@ -63,7 +66,6 @@ public class OffreFXMLController implements Initializable {
     private TextField tfImageO;
     @FXML
     private Button brImageO;
-    @FXML
     private CheckBox cbExpireO;
 
     
@@ -130,7 +132,7 @@ public class OffreFXMLController implements Initializable {
         o.setRemise(Float.valueOf(tfRemiseO.getText()));
         o.setImage(tfImageO.getText());
         o.setExp_date(Date.valueOf(tfDateExpO.getValue()));
-        o.setExpire(Boolean.valueOf(cbExpireO.getText()));
+        o.setExpire(false);
         os.ajouter(o);
         listOffres.getItems().addAll(os.recuperer());
             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
@@ -138,7 +140,8 @@ public class OffreFXMLController implements Initializable {
             alert1.setHeaderText(null);
             alert1.setContentText("offre ajoutée avec succes !");
             alert1.showAndWait();
-             UpdateLO();}
+             UpdateLO();
+             mailfonction();}
              
            catch (Exception ex) {
 
@@ -158,8 +161,9 @@ public class OffreFXMLController implements Initializable {
         tfDescO.setText(selecteditem.getDescription());
         tfRemiseO.setText(String.valueOf(selecteditem.getRemise()));
         tfImageO.setText(String.valueOf(selecteditem.getImage()));
-       // tfDateExpO.setD(Date.valueOf(selecteditem.getExp_date()));
-        //cbExpireO.set
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        tfDateExpO.setValue(LocalDate.parse(sdf.format(selecteditem.getExp_date())));
+        
     }
 
     @FXML
@@ -180,8 +184,8 @@ public class OffreFXMLController implements Initializable {
             alert.showAndWait();
              
          }
-                    else { try{
-            Offre o  = new Offre() ;
+                    else { 
+            try{
             Offre selecteditem = (Offre) listOffres.getSelectionModel().getSelectedItem();
             selecteditem.setTitre(tfTitreO.getText());
             selecteditem.setDescription(tfDescO.getText());
@@ -241,6 +245,33 @@ public class OffreFXMLController implements Initializable {
           try {
             Stage nouveauStage;
             Parent root = FXMLLoader.load(getClass().getResource("CultureFXML.fxml"));
+            nouveauStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            nouveauStage.setScene(scene);
+
+        } catch (IOException ex) {
+            ex.printStackTrace(); 
+        }  
+    }
+    
+    public void mailfonction() {
+        
+        try {
+            String Object = "bienvenue";
+                    //tfObjetO.getText();
+            String Corps = " uvuvwevwevwe onyetwemwevwe okwemoupwem osas";
+                    //tfTexteO.getText();
+            javaMail.sendMail("mohamedaziz.bensalem@esprit.tn", Object, Corps);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void voyageb(ActionEvent event) {
+          try {
+            Stage nouveauStage;
+            Parent root = FXMLLoader.load(getClass().getResource("VoyageFXML.fxml"));
             nouveauStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             nouveauStage.setScene(scene);

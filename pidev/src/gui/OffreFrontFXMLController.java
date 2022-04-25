@@ -12,12 +12,17 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import services.OffreService;
 
 /**
@@ -33,6 +38,8 @@ public class OffreFrontFXMLController implements Initializable {
     private VBox pnl_scrollO;
 
     OffreService os = new OffreService();
+    @FXML
+    private Button calcul;
     /**
      * Initializes the controller class.
      */
@@ -67,5 +74,21 @@ public class OffreFrontFXMLController implements Initializable {
             i++;
         }
     }
+
+    @FXML
+    private void Calculer(ActionEvent event) {
+        try {
+            Stage nouveauStage;
+            Parent root = FXMLLoader.load(getClass().getResource("CalculatriceFXML.fxml"));
+            nouveauStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            nouveauStage.setScene(scene);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }  
+    }
+    
+    
     
 }

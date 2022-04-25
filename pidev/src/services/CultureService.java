@@ -7,6 +7,7 @@ package services;
 
 import entities.Culture;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,12 +42,13 @@ public class CultureService {
             //st.executeUpdate(req);
                 
                 
-            String req1 = "insert into culture(ref,pays,texte,flag) values (?,?,?,?)";
+            String req1 = "insert into culture(ref,pays,texte,flag,date_ajout) values (?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(req1);
             ps.setString(1,c.getRef());
             ps.setString(2,c.getPays());
             ps.setString(3,c.getTexte());
             ps.setString(4,c.getFlag());
+             ps.setDate(5,(Date)c.getDate_ajout());
             ps.executeUpdate();
                 
                 
@@ -75,20 +77,23 @@ public class CultureService {
 //           System.out.println(e.getMessage());
 //       }
 //    }
-    
     public void update(String ref,Culture c){
         try{
-            String sql = "UPDATE culture SET ref='"+c.getRef()
-                   +"', pays='"+c.getPays()
-                   +"', texte='"+c.getTexte()
-                   +"', flag='"+c.getFlag()
-                   +"' WHERE ref='"+ref+"'";
-            PreparedStatement ste = connection.prepareStatement(sql);
-            ste.executeUpdate(sql);
-            System.out.println("culture modifiée");
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }
+             String req1 = "update culture set  ref = ? , pays = ? , texte = ? , flag = ? , date_ajout = ? where ref = ? ";
+            PreparedStatement ps = connection.prepareStatement(req1);
+            
+            ps.setString(1, c.getRef());
+            ps.setString(2, c.getPays());
+            ps.setString(3, c.getTexte());
+            ps.setString(4, c.getFlag());
+            ps.setDate(5, (Date) c.getDate_ajout());
+            ps.setString(6, ref);
+            
+            
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }   
            
     }
     //@Override

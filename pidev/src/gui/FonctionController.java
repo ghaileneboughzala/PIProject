@@ -174,7 +174,8 @@ Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Ma Modification");
             alert.setHeaderText(null);
             alert.setContentText("Fonction bien modifié,vérifiez !");
-            alert.showAndWait();        } catch (Exception ex) {
+            alert.showAndWait();        } 
+        catch (Exception ex) {
             ex.printStackTrace();
 
         }

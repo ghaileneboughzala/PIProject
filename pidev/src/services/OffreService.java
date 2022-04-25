@@ -7,6 +7,7 @@ package services;
 
 import entities.Offre;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,12 +36,13 @@ public class OffreService {
         
         try {
                  
-            String req1 = "insert into offre(titre,description,remise,image) values (?,?,?,?)";
+            String req1 = "insert into offre(titre,description,remise,image,exp_date) values (?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(req1);
             ps.setString(1,o.getTitre());
             ps.setString(2,o.getDescription());
             ps.setFloat(3,o.getRemise());
             ps.setString(4,o.getImage());
+            ps.setDate(5,(Date) o.getExp_date());
             ps.executeUpdate();
                 
                 
@@ -74,14 +76,15 @@ public class OffreService {
     
     public void modifier(Offre o){
         try{
-            String sql="UPDATE offre SET titre='"+o.getTitre()
-                    +"', description='"+o.getDescription()
-                    +"', remise="+o.getRemise()
-                    +", image='"+o.getImage()
-                    +"' WHERE id="+o.getId();
-            PreparedStatement ste = connection.prepareStatement(sql);
-            ste.executeUpdate(sql);
-            System.out.println("offre modifiée");
+            String req1 = "update offre set titre = ? ,description = ? ,remise = ? ,exp_date = ? ,image = ? where id = ? ";
+            PreparedStatement ps = connection.prepareStatement(req1);
+            ps.setString(1,o.getTitre());
+            ps.setString(2,o.getDescription());
+            ps.setFloat(3,o.getRemise());
+            ps.setDate(4,(Date) o.getExp_date());
+            ps.setString(5,o.getImage());
+            ps.setInt(6, o.getId());
+            ps.executeUpdate();
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
@@ -115,6 +118,7 @@ public class OffreService {
                 o.setTitre(rs.getString("titre"));
                 o.setDescription(rs.getString("description"));
                 o.setRemise(rs.getFloat("remise"));
+                o.setExp_date(rs.getDate("exp_date"));
                 o.setImage(rs.getString("image"));
                 
                 list.add(o);
@@ -137,6 +141,7 @@ public class OffreService {
                 o.setTitre(rs.getString("titre"));
                 o.setDescription(rs.getString("description"));
                 o.setRemise(rs.getFloat("remise"));
+                o.setExp_date(rs.getDate("exp_date"));
                 o.setImage(rs.getString("image"));
                 
                 list.add(o);

@@ -72,7 +72,7 @@ public class ItemOffreController implements Initializable {
         itemTitreO.setText(o.getTitre());
         itemRemiseO.setText(String.valueOf(o.getRemise()));
         itemDescO.setText(o.getDescription());
-        //itemDateO.setText(o.getExp_date().toString());
+        itemDateO.setText(o.getExp_date().toString());
         
       file = new File("src/uploads/" + o.getImage());
       itemImageO.setImage(new Image(file.toURI().toString()));
