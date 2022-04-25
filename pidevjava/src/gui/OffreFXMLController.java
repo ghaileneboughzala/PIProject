@@ -5,12 +5,13 @@
  */
 package gui;
 
-import entities.Culture;
 import entities.Offre;
 import java.awt.Desktop;
 import java.io.File;
 import java.net.URL;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -29,6 +30,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import services.CultureService;
 import services.OffreService;
+import utils.javaMail;
 
 /**
  * FXML Controller class
@@ -64,6 +66,10 @@ public class OffreFXMLController implements Initializable {
     OffreService os= new OffreService();
 
     ObservableList<Offre> offres;
+    @FXML
+    private TextField tfTexteO;
+    @FXML
+    private TextField tfObjetO;
  
     
     /**
@@ -108,6 +114,14 @@ public class OffreFXMLController implements Initializable {
             alert.showAndWait();
              
          }
+        else if((Float.parseFloat(tfRemiseO.getText())>100)||((Float.parseFloat(tfRemiseO.getText()))<5)){
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("reference");
+            alert.setHeaderText(null);
+            alert.setContentText("La remise doit etre entre 5% et 100%!");
+            alert.showAndWait();
+             
+         }
                     else {
              try {
            Offre o = new Offre();
@@ -144,8 +158,11 @@ public class OffreFXMLController implements Initializable {
         tfDescO.setText(selecteditem.getDescription());
         tfRemiseO.setText(String.valueOf(selecteditem.getRemise()));
         tfImageO.setText(String.valueOf(selecteditem.getImage()));
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        tfDateExpO.setValue(LocalDate.parse(sdf.format(selecteditem.getExp_date())));
        // tfDateExpO.setD(Date.valueOf(selecteditem.getExp_date()));
-        //cbExpireO.set
+        //cbExpireO.
     }
 
     @FXML
@@ -189,6 +206,24 @@ public class OffreFXMLController implements Initializable {
 
             ex.printStackTrace();
     }
+    }
+    
+    
+    public void mailfonction(MouseEvent event) {
+        
+//        List<User> listU = us.recuperer()
+        try {
+//            for (User user : listU){
+//                String Object = "Nouvelle Offre";
+//                String Corps = "Bonjour Mr/Mme"+user.getNom()+""+user.getPrenom()+", veuillez consulter nos dernieres offres!";
+//                javaMail.sendMail(user.getMail(), Object, Corps);
+//            }
+            String Object = tfObjetO.getText();
+            String Corps = tfTexteO.getText();
+            javaMail.sendMail("mohamedaziz.bensalem@esprit.tn", Object, Corps);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
    
 }

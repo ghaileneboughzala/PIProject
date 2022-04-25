@@ -118,6 +118,8 @@ public class OffreService {
                 o.setRemise(rs.getFloat("remise"));
                 o.setImage(rs.getString("image"));
                 
+                o.setExp_date(rs.getDate("date_exp"));
+                
                 list.add(o);
             }
         } catch(SQLException ex){

@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import utils.MyDB;
 
 /**
@@ -31,12 +33,12 @@ public class VoyageService {
         
         try {
                  
-            String req1 = "insert into voyage(offre_id,id_u,destination,done) values (?,?,?)";
+            String req1 = "insert into voyage(offre_id,id_u,destination,done) values (?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(req1);
             ps.setInt(1,v.getOffre_id());
-            ps.setInt(1,v.getId_u());
-            ps.setString(2,v.getDestination());
-            ps.setBoolean(3,v.isDone());
+            ps.setInt(2,v.getId_u());
+            ps.setString(3,v.getDestination());
+            ps.setBoolean(4,v.isDone());
             ps.executeUpdate();     
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -46,8 +48,8 @@ public class VoyageService {
     
     public void modifier(Voyage v){
         try{
-            String sql="UPDATE offre SET offre_id="+v.getOffre_id()
-                    +"' id_="+v.getId_u()
+            String sql="UPDATE voyage SET offre_id="+v.getOffre_id()
+                    +"' id_u="+v.getId_u()
                     +", destination='"+v.getDestination()
                     +"', done="+v.isDone()
                     +" WHERE id="+v.getId();
@@ -63,7 +65,7 @@ public class VoyageService {
     //@Override
     public void supprimer(int id) {
         try{
-           String sql="DELETE FROM offre WHERE id="+id; 
+           String sql="DELETE FROM voyage WHERE id="+id; 
            PreparedStatement ste = connection.prepareStatement(sql);
            ste.executeUpdate(sql);
            System.out.println("voyage supprimé");
@@ -74,8 +76,8 @@ public class VoyageService {
     }
     
     
-    public List<Voyage> recuperer(){
-        List<Voyage> list = new ArrayList<>();
+    public ObservableList<Voyage> recuperer(){
+        ObservableList<Voyage> list = FXCollections.observableArrayList();
         try {
             String req = "select * from voyage";
             Statement st = connection.createStatement();

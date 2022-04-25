@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="519.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VoyageFXMLController">
+   <children>
+      <Button fx:id="btnAddV" layoutX="293.0" layoutY="333.0" mnemonicParsing="false" onAction="#addOffre" text="Ajouter" />
+      <ListView fx:id="listVoyages" layoutX="280.0" layoutY="79.0" onMouseClicked="#getSelected" prefHeight="244.0" prefWidth="337.0" />
+      <Button fx:id="btnUpdateV" layoutX="390.0" layoutY="333.0" mnemonicParsing="false" onAction="#updateOffre" text="modifier" />
+      <Button fx:id="btnDeleteV" layoutX="492.0" layoutY="332.0" mnemonicParsing="false" onAction="#deleteOffre" prefHeight="31.0" prefWidth="89.0" text="Supprimer" />
+      <Label layoutX="47.0" layoutY="108.0" text="id_offre" />
+      <Label layoutX="35.0" layoutY="230.0" text="Destination" />
+      <Label layoutX="33.0" layoutY="287.0" text="DateDepart" />
+      <Label layoutX="48.0" layoutY="170.0" text="id_user" />
+      <TextField fx:id="tfDestinationV" layoutX="113.0" layoutY="225.0" prefHeight="31.0" prefWidth="156.0" />
+      <TextField fx:id="tfIdUserV" layoutX="111.0" layoutY="165.0" prefHeight="31.0" prefWidth="156.0" />
+      <TextField fx:id="tfIdOffreV" layoutX="113.0" layoutY="105.0" prefHeight="31.0" prefWidth="156.0" />
+      <DatePicker fx:id="tfDateDepV" layoutX="113.0" layoutY="282.0" prefHeight="31.0" prefWidth="156.0" />
+      <CheckBox fx:id="cbDoneV" layoutX="113.0" layoutY="337.0" mnemonicParsing="false" text="Effectué" />
+   </children>
+</AnchorPane>

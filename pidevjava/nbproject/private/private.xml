@@ -3,14 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/test/Main.java</file>
-            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/test/NewFXMain.java</file>
-            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/gui/ListFXMLController.java</file>
-            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/entities/Culture.java</file>
-            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/gui/ajouterCultureFXML.fxml</file>
-            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/gui/listFXML.fxml</file>
-            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/gui/AjouterCultureFXMLController.java</file>
+            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/services/VoyageService.java</file>
+            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/utils/javaMail.java</file>
+            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/gui/VoyageFXML.fxml</file>
+            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/services/OffreService.java</file>
+            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/utils/MyDB.java</file>
+            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/gui/CultureFrontFXML.fxml</file>
+            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/gui/VoyageFXMLController.java</file>
+            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/gui/OffreFrontFXMLController.java</file>
             <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/services/CultureService.java</file>
+            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/gui/OffreFXMLController.java</file>
+            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/gui/CultureFrontFXMLController.java</file>
+            <file>file:/C:/Users/lenovo/Desktop/pidevjava/src/entities/Voyage.java</file>
         </group>
     </open-files>
 </project-private>

@@ -10,6 +10,8 @@ import java.awt.Desktop;
 import java.io.File;
 import java.net.URL;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -101,6 +103,8 @@ public class CultureFXMLController implements Initializable {
         tfPaysC.setText(selecteditem.getPays());
         tfTexteC.setText(selecteditem.getTexte());
         tfFlagC.setText(String.valueOf(selecteditem.getFlag()));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        tfDateAjoutC.setValue(LocalDate.parse(sdf.format(selecteditem.getDate_ajout())));
         //tfDateAjoutC.setDate(Date.valueOf(selecteditem.getDate_ajout()));
     }
 
@@ -132,6 +136,14 @@ public class CultureFXMLController implements Initializable {
             alert.setTitle("obligatoire");
             alert.setHeaderText(null);
             alert.setContentText("Il est obligatoire de remplir tous les champs !");
+            alert.showAndWait();
+             
+         }
+         else if((tfRefC.getText().length()>5)){
+             Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("reference");
+            alert.setHeaderText(null);
+            alert.setContentText("La référence doit contenir 5 caractères max!");
             alert.showAndWait();
              
          }
@@ -184,7 +196,7 @@ public class CultureFXMLController implements Initializable {
             alert.setTitle("Modif");
             alert.setHeaderText(null);
             alert.setContentText("Culture modifiée avec succes !");
-            alert.showAndWait();        } catch (Exception ex) {
+            alert.showAndWait();        }catch (Exception ex) {
             ex.printStackTrace();
 
         }

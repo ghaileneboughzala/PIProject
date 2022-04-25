@@ -41,15 +41,40 @@ public class Voyage {
         this.done = done;
     }
 
-    
-    public Voyage(int id, int id_u, Date date_dep, Date heure_dep, String destination, boolean done) {
-        this.id = id;
+    public Voyage(int offre_id, int id_u, Date date_dep, String destination, boolean done) {
+        this.offre_id = offre_id;
         this.id_u = id_u;
         this.date_dep = date_dep;
-        this.heure_dep = heure_dep;
         this.destination = destination;
         this.done = done;
     }
+
+    public Voyage(int id, int offre_id, int id_u, Date date_dep, String destination, boolean done) {
+        this.id = id;
+        this.offre_id = offre_id;
+        this.id_u = id_u;
+        this.date_dep = date_dep;
+        this.destination = destination;
+        this.done = done;
+    }
+    
+    
+    
+    
+    
+    
+
+    
+//    public Voyage(int id, int id_u, Date date_dep, Date heure_dep, String destination, boolean done) {
+//        this.id = id;
+//        this.id_u = id_u;
+//        this.date_dep = date_dep;
+//        this.heure_dep = heure_dep;
+//        this.destination = destination;
+//        this.done = done;
+//    }
+    
+    
 
 //    public Voyage(int id, int id_u, String destination, boolean done) {
 //        this.id = id;
