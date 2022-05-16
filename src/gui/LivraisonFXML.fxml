@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="415.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LivraisonFXMLController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <AnchorPane id="AnchorPane" layoutX="112.0" layoutY="5.0" prefHeight="400.0" prefWidth="600.0">
+               <children>
+                  <Pane layoutX="89.0" layoutY="62.0" prefHeight="372.0" prefWidth="261.0">
+                     <children>
+                        <Label layoutX="3.0" layoutY="29.0" text="Id Personnel :" />
+                        <Label layoutX="3.0" layoutY="60.0" text="Date Livraison :" />
+                        <Label layoutX="4.0" layoutY="89.0" text="Adresse" />
+                        <Label layoutX="4.0" layoutY="120.0" text="Numèro téléphone :" />
+                        <TextField fx:id="tfadresse" layoutX="125.0" layoutY="85.0" prefHeight="24.0" prefWidth="133.0" promptText="Adresse" />
+                        <DatePicker fx:id="tfdate_h_l" layoutX="125.0" layoutY="56.0" prefHeight="25.0" prefWidth="133.0" promptText="Date_h_l" />
+                        <Button fx:id="btnsupprimer" layoutX="178.0" layoutY="222.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #915a31;" text="Supprimer" textFill="#f2efef" />
+                        <Button fx:id="btnmodifier" layoutX="95.0" layoutY="222.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #915a31;" text="Modifier" textFill="#f2efef" />
+                        <Button fx:id="btnajouter" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #915a31;" text="Ajouter" textFill="#f2efef" />
+                        <TextField fx:id="tfnum_tel" layoutX="125.0" layoutY="116.0" prefHeight="24.0" prefWidth="133.0" promptText="Num_tel" />
+                        <Label layoutX="3.0" layoutY="154.0" text="Etat :" />
+                        <TextField fx:id="tfetat" layoutX="125.0" layoutY="150.0" prefHeight="24.0" prefWidth="133.0" promptText="Etat" />
+                        <TextField fx:id="tfp" layoutX="125.0" layoutY="25.0" prefHeight="24.0" prefWidth="133.0" promptText="Personnel_id" />
+                     </children>
+                  </Pane>
+                  <TableView fx:id="tvLivraison" layoutX="367.0" layoutY="92.0" prefHeight="305.0" prefWidth="340.0">
+                     <columns>
+                        <TableColumn fx:id="colpersonnel_id" prefWidth="77.0" text="personnel_id" />
+                        <TableColumn fx:id="coldate_h_l" prefWidth="63.0" text="date_h_l" />
+                        <TableColumn fx:id="coladresse" prefWidth="85.0" text="adresse" />
+                        <TableColumn fx:id="colnum_tel" prefWidth="64.0" text="num_tel" />
+                        <TableColumn fx:id="coletat" prefWidth="56.33331298828125" text="Etat" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="btnafficher" layoutX="444.0" layoutY="404.0" mnemonicParsing="false" onAction="#Afficher" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #915a31;" text="Afficher" textFill="#f2efef" />
+                  <Button fx:id="btnimprimer" layoutX="577.0" layoutY="404.0" mnemonicParsing="false" onAction="#Imprimer" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #915a31;" text="Imprimer" textFill="#f2efef" />
+                  <Label layoutX="-49.0" layoutY="21.0" text="Le tour de monde">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="238.0" layoutY="6.0" prefHeight="32.0" prefWidth="268.0" style="-fx-family: #915a31;" text="Gestion des livraisons" textFill="#915a31">
+                     <font>
+                        <Font name="System Bold Italic" size="22.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="search" layoutX="469.0" layoutY="53.0" promptText="search" />
+                  <Label layoutX="395.0" layoutY="53.0" text="Recherche :" textFill="#915a31">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <ImageView fitHeight="69.0" fitWidth="71.0" layoutX="-5.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/LE%20TOUR%20DU%20MONDE%20(1).png" />
+               </image>
+            </ImageView>
+            <Label layoutX="6.0" layoutY="67.0" text="Menu" textFill="#915a31">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Pane layoutX="-5.0" layoutY="98.0" prefHeight="337.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btncommande" layoutX="5.0" layoutY="8.0" mnemonicParsing="false" onAction="#Commande" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #915a31;" text="Gestion des commandes" textFill="#f2efef" />
+                  <Button fx:id="btnlivraison" layoutX="5.0" layoutY="43.0" mnemonicParsing="false" onAction="#Livraison" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #915a31;" text="Gestion des livraisons" textFill="#f2efef" />
+                  <Button fx:id="btnajouter12" layoutX="5.0" layoutY="80.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #915a31;" textFill="#f2efef" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="439.0" prefWidth="832.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CommandeFXMLController">
+   <children>
+      <Pane layoutX="202.0" layoutY="82.0" prefHeight="297.0" prefWidth="261.0">
+         <children>
+            <Label layoutX="3.0" layoutY="29.0" text="Numéro commande :" />
+            <Label layoutX="3.0" layoutY="60.0" text="Date commande :" />
+            <Label layoutX="4.0" layoutY="89.0" text="Payement :" />
+            <Label layoutX="4.0" layoutY="120.0" text="Id Livraison :" />
+            <TextField fx:id="tfnumc" layoutX="125.0" layoutY="26.0" prefHeight="24.0" prefWidth="133.0" promptText="Num_c" />
+            <TextField fx:id="tfpayement" layoutX="125.0" layoutY="85.0" prefHeight="24.0" prefWidth="133.0" promptText="Payement" />
+            <DatePicker fx:id="tfdatec" layoutX="125.0" layoutY="56.0" prefHeight="25.0" prefWidth="133.0" promptText="Date_c" />
+            <Button fx:id="btnsupprimer" layoutX="178.0" layoutY="184.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #915a31;" text="Supprimer" textFill="#f2efef" />
+            <Button fx:id="btnmodifier" layoutX="95.0" layoutY="184.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #915a31;" text="Modifier" textFill="#f2efef" />
+            <Button fx:id="btnajouter" layoutX="11.0" layoutY="184.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #915a31;" text="Ajouter" textFill="#f2efef" />
+            <TextField fx:id="tflivraisons_id" layoutX="125.0" layoutY="116.0" prefHeight="24.0" prefWidth="133.0" promptText="Livraison id" />
+         </children>
+      </Pane>
+      <TableView fx:id="tvCommandes" layoutX="486.0" layoutY="93.0" prefHeight="305.0" prefWidth="319.0">
+        <columns>
+          <TableColumn fx:id="colidlivraison" prefWidth="93.66668701171875" text="livraisons_id" />
+            <TableColumn fx:id="colnum_c" prefWidth="56.33331298828125" text="num_c" />
+            <TableColumn fx:id="coldate_c" prefWidth="85.66668701171875" text="date_c" />
+          <TableColumn fx:id="colpayement" prefWidth="82.33331298828125" text="payement" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnafficher" layoutX="608.0" layoutY="407.0" mnemonicParsing="false" onAction="#Afficher" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #915a31;" text="Afficher" textFill="#f2efef" />
+      <Pane layoutX="-10.0" layoutY="100.0" prefHeight="337.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="btncommande" layoutX="5.0" layoutY="8.0" mnemonicParsing="false" onAction="#Commande" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #915a31;" text="Gestion des commandes" textFill="#f2efef" />
+            <Button fx:id="btnlivraison" layoutX="5.0" layoutY="43.0" mnemonicParsing="false" onAction="#Livraison" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #915a31;" text="Gestion des livraisons" textFill="#f2efef" />
+            <Button fx:id="btnajouter12" layoutX="5.0" layoutY="80.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #915a31;" textFill="#f2efef" />
+         </children>
+      </Pane>
+      <Label layoutX="332.0" layoutY="7.0" prefHeight="32.0" prefWidth="268.0" style="-fx-family: #915a31;" text="Gestion des commandes" textFill="#915a31">
+         <font>
+            <Font name="System Bold Italic" size="22.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="69.0" fitWidth="71.0" layoutX="-9.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/LE%20TOUR%20DU%20MONDE%20(1).png" />
+         </image>
+      </ImageView>
+      <Label layoutX="58.0" layoutY="27.0" text="Le tour de monde">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="2.0" layoutY="71.0" text="Menu" textFill="#915a31">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="535.0" layoutY="58.0" text="Recherche :" />
+      <TextField fx:id="search" layoutX="602.0" layoutY="54.0" promptText="search" />
+   </children>
+</AnchorPane>
