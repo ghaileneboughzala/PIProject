@@ -118,7 +118,8 @@ public class FXMLfrontController implements Initializable {
                 itemController.tetat.setVisible(false);
                 itemController.tcin.setVisible(false);
                 itemController.temail.setVisible(false);
-                itemController.image.setVisible(false);
+                //itemController.image.setVisible(false);
+                System.out.println(users.get(i));
                 itemController.setData(users.get(i),myListener);
 
                 if (column == 1) {

@@ -18,11 +18,13 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.sql.SQLIntegrityConstraintViolationException;
+import static java.util.Calendar.DATE;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.BCryptPass;
+import static utils.CryptWithMD5.cryptWithMD5;
 import utils.Myconnexion;
 
 /**
@@ -56,13 +58,21 @@ public class ServiceUser implements IService<User>{
         }
         try {
             Statement st;
+            String role= "";
+            if (t.getRoles().equals(Role.ROLE_USER))
+            {
+                role = "[\"ROLE_USER\"]";
+            }
+            else 
+                role ="[\"ROLE_ADMIN\"]";
+            
             String query="INSERT INTO `user`"
                     + "(`carte_id`, `email`, `roles`,"
                     + " `password`, `cin`, `nom`"
                     + ", `prenom`, `photo`, "
                     + "`is_verified`, `code`) "
-                    + "VALUES ('"+lc.get(lc.size()-1).getId()+"','"+t.getEmail()+"','"+t.getRoles()+"',"
-                    + "'"+BCryptPass.HashPass(t.getPassword())+"','"+t.getCin()+"','"+t.getNom()+"',"
+                    + "VALUES ('"+lc.get(lc.size()-1).getId()+"','"+t.getEmail()+"','"+role+"',"
+                    + "'"+cryptWithMD5(t.getPassword())+"','"+t.getCin()+"','"+t.getNom()+"',"
                     + "'"+t.getPrenom()+"','"+t.getPhoto()+"','"+x+"',"
                     + "'"+t.getCode()+"')";
             st=cnx.createStatement();
@@ -96,12 +106,20 @@ public class ServiceUser implements IService<User>{
         else{
             x=0;
         }
+        
         try {
+            String role= "";
+            if (t.getRoles().equals(Role.ROLE_USER))
+            {
+                role = "[\"ROLE_USER\"]";
+            }
+            else 
+                role ="[\"ROLE_ADMIN\"]";
             Statement st;
             String query="UPDATE `user` SET `carte_id`='"+t.getCarte_id()+"',"
                     + "`email`='"+t.getEmail()+"',"
-                    + "`roles`='"+t.getRoles()+"',"
-                    + "`password`='"+BCryptPass.HashPass(t.getPassword())+"',"
+                    + "`roles`='"+role+"',"
+                    + "`password`='"+cryptWithMD5(t.getPassword())+"',"
                     + "`cin`='"+t.getCin()+"',"
                     + "`nom`='"+t.getNom()+"',"
                     + "`prenom`='"+t.getPrenom()+"',"
@@ -115,12 +133,24 @@ public class ServiceUser implements IService<User>{
         }
         
     }
+    public void modifierBloc(int bloc, int id_amodifier) {
+        
+        try {
+            Statement st;
+            String query="UPDATE `user` SET `is_verified`='"+bloc+"' WHERE id="+id_amodifier;
+            st=cnx.createStatement();
+            st.executeUpdate(query);
+            } catch (SQLException ex) {
+            Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 
     @Override
     public List<User> afficher() {
         List<User> lu=new ArrayList<>();
         try {
-            String query="SELECT * FROM `user`";
+            String query="SELECT * FROM `user` ";
             Statement st;
             st=cnx.createStatement();
             
@@ -130,7 +160,13 @@ public class ServiceUser implements IService<User>{
                 u.setId(rs.getInt("id"));
                 u.setCarte_id(rs.getInt("carte_id"));
                 u.setEmail(rs.getString("email"));
-                u.setRoles(Role.valueOf(rs.getString("roles")));
+                String role= "";
+                if (rs.getString("roles").equals("[\"ROLE_USER\"]"))
+                {
+                    u.setRoles(Role.ROLE_USER);
+                }
+                else 
+                    u.setRoles(Role.ROLE_ADMIN);
                 u.setPassword(rs.getString("password"));
                 u.setCin(rs.getString("cin"));
                 u.setNom(rs.getString("nom"));
@@ -139,6 +175,7 @@ public class ServiceUser implements IService<User>{
                 u.setIs_verified(rs.getBoolean("is_verified"));
                 u.setCode(rs.getString("code"));
                 lu.add(u);
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
@@ -157,7 +194,13 @@ public class ServiceUser implements IService<User>{
                 u.setId(rs.getInt("id"));
                 u.setCarte_id(rs.getInt("carte_id"));
                 u.setEmail(rs.getString("email"));
-                u.setRoles(Role.valueOf(rs.getString("roles")));
+                String role= "";
+                if (rs.getString("roles").equals("[\"ROLE_USER\"]"))
+                {
+                    u.setRoles(Role.ROLE_USER);
+                }
+                else 
+                    u.setRoles(Role.ROLE_ADMIN);                
                 u.setPassword(rs.getString("password"));
                 u.setCin(rs.getString("cin"));
                 u.setNom(rs.getString("nom"));
@@ -165,6 +208,7 @@ public class ServiceUser implements IService<User>{
                 u.setPhoto(rs.getString("photo"));
                 u.setIs_verified(rs.getBoolean("is_verified"));
                 u.setCode(rs.getString("code"));
+                
             }
             
         } catch (SQLException ex) {
@@ -184,6 +228,8 @@ public class ServiceUser implements IService<User>{
     }
     public User getUserByCard(int id){
         List<User> users=afficher();
+        
         return users.stream().filter(u->u.getCarte_id()==id).findFirst().orElse(null);
     }
+     
 }

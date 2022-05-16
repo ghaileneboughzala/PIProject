@@ -8,6 +8,7 @@ package GUI;
 import entites.Role;
 import entites.User;
 import gestionuserpidev.FXMain;
+import java.awt.BorderLayout;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
 import services.ServiceUser;
+import static utils.CryptWithMD5.cryptWithMD5;
 
 /**
  * FXML Controller class
@@ -59,7 +61,7 @@ public class FXMLloginController implements Initializable {
             erreur+="-Veuillez remplir le champ Mot De Passe\n";
         }
         if (!pattern.matcher(tfemail.getText().trim()).matches()) {
-            erreur+="-Veuillez insérer un email valide\n";
+            erreur+="-Veuillez inserer un e mail correct\n";
         } 
         return erreur;
         
@@ -72,48 +74,60 @@ public class FXMLloginController implements Initializable {
             alert.setContentText(controleDeSaisie());
             alert.showAndWait();
         }
+        
         else{
             
-            User u=su.getUserByEmail(tfemail.getText());
-            
-            
-            if(BCrypt.checkpw( pfpassword.getText(),u.getPassword())){
-                if(u.getRoles()==Role.ROLE_USER){
-                    idglobal=u.getId();
-                    Stage closestage=(Stage)((Node)event.getSource()).getScene().getWindow();
-                    closestage.close();
-                    try {
-                        Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXMLfront.fxml"));
-                        Scene scene = new Scene(root);
-                        Stage primaryStage=new Stage();
-                        primaryStage.setTitle("Signup");
-                        primaryStage.setScene(scene);
-                        primaryStage.show();
-                    } catch (IOException ex) {
-                        Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+            //User u=su.getUserByEmail(tfemail.getText());
+            User u=su.login(tfemail.getText(), cryptWithMD5(pfpassword.getText()));
+           
+            if(u.getId()!=0){
+                System.out.println(u);
+                if(u.isIs_verified()){
+                    
+                
+                    if(u.getRoles()==Role.ROLE_USER){
+                        idglobal=u.getId();
+                        Stage closestage=(Stage)((Node)event.getSource()).getScene().getWindow();
+                        closestage.close();
+                        try {
+                            Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXMLfront.fxml"));
+                            Scene scene = new Scene(root);
+                            Stage primaryStage=new Stage();
+                            primaryStage.setTitle("Signup");
+                            primaryStage.setScene(scene);
+                            primaryStage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    else {
+                        idglobal=u.getId();
+                        Stage closestage=(Stage)((Node)event.getSource()).getScene().getWindow();
+                        closestage.close();
+                        try {
+                            Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXMLadmin.fxml"));
+                            Scene scene = new Scene(root);
+                            Stage primaryStage=new Stage();
+                            primaryStage.setTitle("Signup");
+                            primaryStage.setScene(scene);
+                            primaryStage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 }
-                else {
-                    idglobal=u.getId();
-                    Stage closestage=(Stage)((Node)event.getSource()).getScene().getWindow();
-                    closestage.close();
-                    try {
-                        Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXMLadmin.fxml"));
-                        Scene scene = new Scene(root);
-                        Stage primaryStage=new Stage();
-                        primaryStage.setTitle("Signup");
-                        primaryStage.setScene(scene);
-                        primaryStage.show();
-                    } catch (IOException ex) {
-                        Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur Login");
+                    alert.setContentText("Votre compté a été bloqué par l'administrateur");
+                    alert.showAndWait();
                 }
             }
             
             else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur Login");
-                alert.setContentText("invalid Email or Password");
+                alert.setContentText("Email ou/et mot de passe invalide(s)");
                 alert.showAndWait();
             }
         }
@@ -134,6 +148,25 @@ public class FXMLloginController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void motdepassoublier(ActionEvent event) {
+        try {
+                Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+
+                stageclose.close();
+                Parent root=FXMLLoader.load(getClass().getResource("/GUI/FXMLforgotpassword.fxml"));
+                Stage stage =new Stage();
+
+                Scene scene = new Scene(root);
+
+                stage.setTitle("signup");
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLforgotpasswordController.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
     
 }

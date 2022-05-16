@@ -16,11 +16,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 /**
  *
  * @author ghail
  */
 public class FXMain extends Application {
+    public static int userid;
     
     @Override
     public void start(Stage primaryStage) {

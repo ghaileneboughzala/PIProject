@@ -18,6 +18,7 @@ import services.ServiceCarteFidelite;
 import services.ServiceUser;
 import utils.BCryptPass;
 import utils.Myconnexion;
+import utils.Smsapi;
 
 /**
  *
@@ -35,13 +36,18 @@ public class GestionUserPidev {
         CarteFidelite c=new CarteFidelite("10", 20, "5 mois", d);
         ServiceUser su=new ServiceUser();
         ServiceCarteFidelite sc=new ServiceCarteFidelite();
-        System.out.println(sc.sortByPoints());
+        
+        Date date = new Date(LocalDate.now().getYear()-1900,LocalDate.now().getMonthValue()-1, LocalDate.now().getDayOfMonth());
+        System.out.println(date);
+        //Smsapi.sendSMS("Un nouveau utilisateur a été ajouté");
+        //System.out.println(sc.sortByPoints());
         //sc.ajouter(c);
         //sc.supprimer(112);
         //sc.modifier(c, 111);
         //System.out.println(sc.afficher());
         //su.ajouter(u);
         //System.out.println(su.afficher());
+        
         
         
         

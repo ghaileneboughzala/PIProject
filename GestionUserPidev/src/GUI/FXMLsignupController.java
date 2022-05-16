@@ -34,6 +34,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.ServiceUser;
+import utils.Smsapi;
 
 /**
  * FXML Controller class
@@ -75,7 +76,7 @@ public class FXMLsignupController implements Initializable {
         File file = open.showOpenDialog(stage);
         if (file != null) {
             String path = file.getAbsolutePath();
-            path = path.replace("\\", "\\\\\\\\\\");
+            path = path.replace("\\", "\\\\\\\\\\\\\\\\\\\\\\");
             tfimgurl.setText(path);
             Image img = new Image(file.toURI().toString());
             image.setImage(img);
@@ -88,13 +89,13 @@ public class FXMLsignupController implements Initializable {
         Pattern pattern = Pattern.compile(emailRegex);
         String erreur="";
         if(tfcin.getText().trim().isEmpty()){
-            erreur+="-Veuillez remplir le champ CIN\n";
+            erreur+="-Veuillez emplir le champ CIN\n";
         }
         if(tfemail.getText().trim().isEmpty()){
             erreur+="-Veuillez remplir le champ Email\n";
         }
         if(tfimgurl.getText().trim().isEmpty()){
-            erreur+="-Veuillez insérer une image\n";
+            erreur+="-Inserer votre photo\n";
         }
         if(tfnom.getText().trim().isEmpty()){
             erreur+="-Veuillez remplir le champ Nom\n";
@@ -106,10 +107,10 @@ public class FXMLsignupController implements Initializable {
             erreur+="-Veuillez remplir le champ Mot De Passe\n";
         }
         if(!tfcin.getText().trim().matches("[0-9]+") || tfcin.getText().trim().length()!=8 ){
-            erreur+="Veuillez insérer un numero de CIN valide";
+            erreur+="-Veuillez insérer un numéro de carte correct\n";
         }
         if (!pattern.matcher(tfemail.getText().trim()).matches()) {
-            erreur+="-Veuillez insérer un email valide\n";
+            erreur+="-Veuillez insérer un email correct\n";
         } 
         return erreur;
         
@@ -130,6 +131,7 @@ public class FXMLsignupController implements Initializable {
         else{
             try{
                 su.ajouter(u);
+                Smsapi.sendSMS("Cher administrateur, le nouveau utilisateur : "+u.getNom()+" "+u.getPrenom()+" a été inscrit.");
                 throw new SQLIntegrityConstraintViolationException();
                 } catch(SQLIntegrityConstraintViolationException  e){
                 System.out.println(e.getMessage());

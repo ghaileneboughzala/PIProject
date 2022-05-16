@@ -12,8 +12,13 @@ import gestionuserpidev.FXMain;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
+import java.util.Observable;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -39,11 +44,19 @@ import javafx.stage.Stage;
 import services.MyListener;
 import services.ServiceUser;
 import java.util.regex.Pattern;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.util.Duration;
 import services.ServiceCarteFidelite;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -85,6 +98,8 @@ public class FXMLadminController implements Initializable {
     private TextField tfpts;
     ServiceUser su=new ServiceUser();
     ServiceCarteFidelite sc=new ServiceCarteFidelite();
+    @FXML
+    private Button stat;
     
     /**
      * Initializes the controller class.
@@ -92,7 +107,7 @@ public class FXMLadminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        refresh();
+        rechercheavance();
         tfimgurl.setVisible(false);
        
     }    
@@ -107,7 +122,7 @@ public class FXMLadminController implements Initializable {
             erreur+="-Veuillez remplir le champ Email\n";
         }
         if(tfimgurl.getText().trim().isEmpty()){
-            erreur+="-Veuillez inserer une image\n";
+            erreur+="-Veuillez insérer votre photo\n";
         }
         if(tfnom.getText().trim().isEmpty()){
             erreur+="-Veuillez remplir le champ Nom\n";
@@ -119,10 +134,10 @@ public class FXMLadminController implements Initializable {
             erreur+="-Veuillez remplir le champ Mot De Passe\n";
         }
         if(!tfcin.getText().trim().matches("[0-9]+") &&tfcin.getText().trim().length()!=8 ){
-            erreur+="-Veuillez insérer un numero de CIN valide\n";
+            erreur+="-Veuillez insérer un numéro de carte correct\n";
         }
         if (!pattern.matcher(tfemail.getText().trim()).matches()) {
-            erreur+="-Veuillez insérer un email valide\n";
+            erreur+="-Veuillez insérer un email correct\n";
         } 
         return erreur;
         
@@ -174,12 +189,20 @@ public class FXMLadminController implements Initializable {
                 
                 c.setNbpts(Integer.parseInt(tfpts.getText()));
                 sc.modifier(c, c.getId());
-                refresh();
+                refresh(su.afficher());
+                TrayNotification tray = new TrayNotification();
+            
+                AnimationType type = AnimationType.POPUP;
+                tray.setAnimationType(type);
+                tray.setTitle("Succés d'ajout de l'utilisateur");
+                tray.setMessage("L'utilisateur a été ajouté avec succès");
+                tray.setNotificationType(NotificationType.SUCCESS);
+                tray.showAndDismiss(Duration.millis(1000));
                 throw new SQLIntegrityConstraintViolationException();  
             } catch(SQLIntegrityConstraintViolationException  e){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erreur Signup");
-                alert.setContentText("Email deja existe");
+                alert.setTitle("Ajout utilisateur");
+                alert.setContentText("Utilisateur ajouté avec succés");
                 alert.showAndWait();
             }
         }
@@ -211,7 +234,7 @@ public class FXMLadminController implements Initializable {
             Alert.AlertType type=Alert.AlertType.CONFIRMATION;
             Alert alert=new Alert(type,"");
             alert.getDialogPane().setContentText("Voulez vous vraiment modifier cet utilisateur?");
-            alert.getDialogPane().setHeaderText("Confirmation modification");
+            alert.getDialogPane().setHeaderText("Confirmer la modification");
             Optional<ButtonType> result =alert.showAndWait();
             if(result.get()==ButtonType.OK)
             {
@@ -219,7 +242,16 @@ public class FXMLadminController implements Initializable {
                 CarteFidelite c=sc.getCarteFideliteById(u.getCarte_id());
                 c.setNbpts(Integer.parseInt(tfpts.getText()));
                 sc.modifier(c, c.getId());
-                refresh();
+                refresh(su.afficher());
+                //**********NOTIFICATION******************
+                TrayNotification tray = new TrayNotification();
+                AnimationType typea = AnimationType.POPUP;
+                tray.setAnimationType(typea);
+                tray.setTitle("Modification avec succès");
+                tray.setMessage("L'utilisateur a été modifié avec succès");
+                tray.setNotificationType(NotificationType.INFORMATION);
+                tray.showAndDismiss(Duration.millis(1000));
+                //**********NOTIFICATION******************
             }
             
             
@@ -232,12 +264,20 @@ public class FXMLadminController implements Initializable {
             Alert.AlertType type=Alert.AlertType.CONFIRMATION;
             Alert alert=new Alert(type,"");
             alert.getDialogPane().setContentText("Voulez vous vraiment supprimer cet utilisateur?");
-            alert.getDialogPane().setHeaderText("Confirmation supprimer");
+            alert.getDialogPane().setHeaderText("Confirmer la suppression");
             Optional<ButtonType> result =alert.showAndWait();
             if(result.get()==ButtonType.OK)
             {
                 su.supprimer(Integer.parseInt(idgetter.getText()));
-                refresh();
+                refresh(su.afficher());
+                TrayNotification tray = new TrayNotification();
+                AnimationType typea = AnimationType.POPUP;
+                tray.setAnimationType(typea);
+                tray.setTitle("Suppression avec succès");
+                tray.setMessage("L'utilisateur a été supprimé avec succès");
+                tray.setNotificationType(NotificationType.WARNING);
+                tray.showAndDismiss(Duration.millis(1000));
+                   
             }
         
     }
@@ -249,7 +289,7 @@ public class FXMLadminController implements Initializable {
         File file = open.showOpenDialog(stage);
         if (file != null) {
             String path = file.getAbsolutePath();
-            path = path.replace("\\", "\\\\\\\\\\");
+            path = path.replace("\\", "\\\\\\\\\\\\\\\\\\\\\\");
             tfimgurl.setText(path);
             Image img = new Image(file.toURI().toString());
             image.setImage(img);
@@ -263,11 +303,11 @@ public class FXMLadminController implements Initializable {
         fillData(u);
         System.out.println(idgetter.getText());
     }
-    public void refresh(){
+    public void refresh(List<User> ls){
         grid.getChildren().clear();
-        List<User> users = su.afficher();
-        if(users.size() > 0){
-            selectedUser(users.get(0));
+       
+        if(ls.size() > 0){
+            selectedUser(ls.get(0));
             myListener = new MyListener() {
                 @Override
                 public void onclickListener(User u) {
@@ -278,13 +318,13 @@ public class FXMLadminController implements Initializable {
         int column = 0;
         int row = 1;
         try {
-            for (int i = 0; i < users.size(); i++) {
+            for (int i = 0; i < ls.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/GUI/FXMLuser.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 FXMLuserController itemController = fxmlLoader.getController();
-                itemController.setData(users.get(i),myListener);
+                itemController.setData(ls.get(i),myListener);
 
                 if (column == 1) {
                     column = 0;
@@ -326,6 +366,93 @@ public class FXMLadminController implements Initializable {
             Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void rechercheavance(){
+        refresh(su.afficher());
+        ObservableList<User> users=FXCollections.observableArrayList(su.afficher());
+        
+        FilteredList<User> filterddata=new FilteredList<>(users,b->true);
+        tfrecherche.textProperty().addListener(
+                (observable,oldValue,newValue)->{
+                    filterddata.setPredicate(
+                        u->{
+                            if(u.getNom().toLowerCase().indexOf(newValue.toLowerCase())!=-1){
+                                return true;
+                            }
+                            else if(u.getCin().toLowerCase().indexOf(newValue.toLowerCase())!=-1){
+                                return true;
+                            }
+                            else if(u.getEmail().toLowerCase().indexOf(newValue.toLowerCase())!=-1){
+                                return true;
+                            }
+                            else if(u.getPrenom().toLowerCase().indexOf(newValue.toLowerCase())!=-1){
+                                return true;
+                            }
+                            else if(u.getRoles().toString().toLowerCase().indexOf(newValue.toLowerCase())!=-1){
+                                return true;
+                            }
+                            
+                            else{
+                                return false;
+                            }
+                            
+                        }
+                            
+                    );
+                    refresh(filterddata);
+                }
+                
+        );
+        
+    }
 
- 
+    @FXML
+    private void block(ActionEvent event) {
+        User u=su.getUserById(Integer.parseInt(idgetter.getText()));
+        int x;
+        if(u.isIs_verified()){
+            x=0;
+        }
+        else{
+            x=1;
+        }
+        su.modifierBloc(x, Integer.parseInt(idgetter.getText()));
+        refresh(su.afficher());
+    }
+
+    @FXML
+    private void activer(ActionEvent event) {
+        User u=su.getUserById(Integer.parseInt(idgetter.getText()));
+        CarteFidelite c=sc.getCarteFideliteById(u.getCarte_id());
+        Date date = new Date(LocalDate.now().getYear()-1900,LocalDate.now().getMonthValue()-1, LocalDate.now().getDayOfMonth());
+        if(c.getDateexpiration().compareTo(date)>0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Validation de la carte");
+            alert.setContentText("Pas besoin de l'activer, cette carte est déja valide.");
+            alert.showAndWait();
+        }
+        else{
+            LocalDate ld=LocalDateTime.now().plusYears(3).toLocalDate();
+            Date d1=Date.valueOf(ld);
+            c.setDateexpiration(d1);
+            sc.modifier(c, c.getId());
+        }
+        refresh(su.afficher());
+    }
+
+    @FXML
+    private void stat(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXMLstat.fxml"));
+            Scene scene = new Scene(root);
+            Stage primaryStage=new Stage();
+            primaryStage.setTitle("Stat");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+
+    
 }

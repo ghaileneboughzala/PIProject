@@ -78,6 +78,8 @@ public class FXMLprofileController implements Initializable {
         File file =new File(u.getPhoto());
         Image img = new Image(file.toURI().toString());
         image.setImage(img);
+        
+        
     }
     @FXML
     private void uploadimg(ActionEvent event) {
@@ -86,7 +88,7 @@ public class FXMLprofileController implements Initializable {
         File file = open.showOpenDialog(stage);
         if (file != null) {
             String path = file.getAbsolutePath();
-            path = path.replace("\\", "\\\\\\\\\\");
+            path = path.replace("\\", "\\\\\\\\\\\\\\\\\\\\\\");
             tfimgurl.setText(path);
             Image img = new Image(file.toURI().toString());
             image.setImage(img);
@@ -131,28 +133,28 @@ public class FXMLprofileController implements Initializable {
         Pattern pattern = Pattern.compile(emailRegex);
         String erreur="";
         if(tfcin.getText().trim().isEmpty()){
-            erreur+="-Veuillez remplir le champ CIN\n";
+            erreur+="-Remplire le champ CIN\n";
         }
         if(tfemail.getText().trim().isEmpty()){
-            erreur+="-Veuillez remplir le champ Email\n";
+            erreur+="-Remplire le champ Email\n";
         }
         if(tfimgurl.getText().trim().isEmpty()){
-            erreur+="-Veuillez insérer une image\n";
+            erreur+="-Inserer une image\n";
         }
         if(tfnom.getText().trim().isEmpty()){
-            erreur+="-Veuillez remplir le champ Nom\n";
+            erreur+="-Remplire le champ Nom\n";
         }
         if(tfprenom.getText().trim().isEmpty()){
-            erreur+="-Veuillez remplir le champ Prenom\n";
+            erreur+="-Remplire le champ Prenom\n";
         }
         if(pfpassword.getText().trim().isEmpty()){
-            erreur+="-Veuillez remplir le champ Mot De Passe\n";
+            erreur+="-Remplire le champ Mot De Passe\n";
         }
         if(!tfcin.getText().trim().matches("[0-9]+") &&tfcin.getText().trim().length()!=8 ){
-            erreur+="-Veuillez insérer un numero de CIN valide\n";
+            erreur+="-Inserer correct numero de cin\n";
         }
         if (!pattern.matcher(tfemail.getText().trim()).matches()) {
-            erreur+="-Veuillez insérer un email valide\n";
+            erreur+="-Inserer correct email\n";
         } 
         return erreur;
         
